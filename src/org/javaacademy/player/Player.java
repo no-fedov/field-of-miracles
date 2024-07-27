@@ -28,9 +28,11 @@ public class Player {
         System.out.println("Ход игрока " + this.name + ", " + this.city);
         System.out.println("Если хотите букву нажмите 'б' и enter,"
                 + " если хотите слово нажмите 'c' и enter");
-        String choice = scanner.next();
+        String choice;
 
         while (true) {
+            choice = scanner.next();
+
             if (choice.equals(LETTER) || choice.equals(WORD)) {
                 break;
             } else {
