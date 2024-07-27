@@ -9,11 +9,6 @@ public class PlayerAnswer {
         this.type = type;
     }
 
-    public enum AnswerType{
-        LETTER,
-        WORD
-    }
-
     public String getAnswer() {
         return answer;
     }

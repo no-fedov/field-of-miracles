@@ -1,20 +1,14 @@
 package org.javaacademy.wonder_field;
 
+import java.util.Scanner;
+
 public class Tableau {
     private String rightAnswer;
     private char[] lettersOnTableau;
 
-    public String getRightAnswer() {
-        return rightAnswer;
-    }
-
-    public char[] getLettersOnTableau() {
-        return lettersOnTableau;
-    }
-
-    public void initTableau(String word) {
-        rightAnswer = word.toUpperCase();
-        lettersOnTableau = new char[word.length()];
+    public void initTableau(Question question) {
+        rightAnswer = question.getAnswer();
+        lettersOnTableau = new char[rightAnswer.length()];
 
         for (int i = 0; i < lettersOnTableau.length; i++) {
             lettersOnTableau[i] = '_';
@@ -22,10 +16,7 @@ public class Tableau {
     }
 
     public void showTableau() {
-        if (isEmptyAttributes()) {
-            return;
-        }
-
+        checkAttributes();
         String tableauForShow = " ";
 
         for (char letter : lettersOnTableau) {
@@ -36,10 +27,7 @@ public class Tableau {
     }
 
     public boolean openLetter(char letter) {
-        if (isEmptyAttributes()) {
-            return false;
-        }
-
+        checkAttributes();
         boolean flag = false;
 
         for (int i = 0; i < lettersOnTableau.length; i++) {
@@ -48,14 +36,16 @@ public class Tableau {
                 flag = true;
             }
         }
-        return true;
+
+        return flag;
     }
 
     public void showAnswer() {
-        String answer = " ";
+        String whitespace = " ";
+        String answer = "";
 
         for (int i = 0; i < rightAnswer.length(); i++) {
-            answer += rightAnswer.charAt(i);
+            answer += whitespace + rightAnswer.charAt(i);
         }
 
         System.out.println(answer);
@@ -70,7 +60,9 @@ public class Tableau {
         return false;
     }
 
-    private boolean isEmptyAttributes() {
-        return rightAnswer == null || lettersOnTableau == null;
+    private void checkAttributes() {
+        if (rightAnswer == null || lettersOnTableau == null) {
+            throw new RuntimeException("Пустое табло");
+        }
     }
 }

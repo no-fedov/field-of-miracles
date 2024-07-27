@@ -1,27 +1,28 @@
 package org.javaacademy.wonder_field;
 
+import org.javaacademy.player.AnswerType;
 import org.javaacademy.player.Player;
 import org.javaacademy.player.PlayerAnswer;
 
 public final class Yakubovich {
 
+    // прочиттать как правильно делать синглтон
     public static final Yakubovich YAKUBOVICH = new Yakubovich();
 
     private Yakubovich() {
     }
 
     public void startShow() {
-        System.out.println("Якубович: Здравствуйте, уважаемые дамы и господа! Пятница! " +
-                "В эфире капитал-шоу «Поле чудес»!");
+        System.out.println("Якубович: Здравствуйте, уважаемые дамы и господа! Пятница! "
+                + "В эфире капитал-шоу «Поле чудес»!");
     }
 
     public void endShow() {
-        System.out.println("Якубович: Мы прощаемся с вами ровно на одну неделю! " +
-                "Здоровья вам, до встречи!");
+        System.out.println("Якубович: Мы прощаемся с вами ровно на одну неделю! "
+                + "Здоровья вам, до встречи!");
     }
 
-    public Player[] invitePlayers(Player[] players, int round) {
-
+    public void invitePlayers(Player[] players, int round) {
         String playerNames = "";
 
         // последнюю запятую убрать
@@ -31,34 +32,31 @@ public final class Yakubovich {
 
         if (round == 4) {
             System.out.println("Якубович: приглашаю победителей групповых этапов: " + playerNames);
-
         }
-
         System.out.println("Якубович: приглашаю " + round + "-ю тройку игроков: " + playerNames);
-        return players;
     }
 
-    public void askPlayers(String question) {
+    public void askPlayers(Question question) {
         System.out.println("Якубович: Внимание вопрос!");
-        System.out.println(question);
+        System.out.println(question.getQuestion());
     }
 
-    public void announceWinner(String name, String city, boolean isFinalRound) {
+    public void announceWinner(Player player, boolean isFinalRound) {
         if (isFinalRound) {
-            System.out.println("Якубович: И перед нами победитель Капитал шоу поле чудес! Это " + name + " из " + city);
+            System.out.println("Якубович: И перед нами победитель Капитал шоу поле чудес! Это "
+                    + player.getName() + " из " + player.getCity());
             return;
         }
-        System.out.println("Якубович: Молодец! " + name + " из " + city + " проходит в финал!");
+        System.out.println("Якубович: Молодец! " + player.getName() + " из "
+                + player.getCity() + " проходит в финал!");
     }
 
-    public boolean checkAnswer(PlayerAnswer playerAnswer, Tableau tableau) {
+    public boolean checkAnswer(PlayerAnswer playerAnswer, Tableau tableau, Question question) {
         boolean flag = false;
 
-        String answer = tableau.getRightAnswer();
-
-        if (playerAnswer.getType() == PlayerAnswer.AnswerType.WORD) {
-            if (tableau.getRightAnswer().equals(answer)) {
-                System.out.println("Якубович: "+ answer +"! Абсолютно верно!");
+        if (playerAnswer.getType() == AnswerType.WORD) {
+            if (question.getAnswer().equals(playerAnswer.getAnswer())) {
+                System.out.println("Якубович: " + playerAnswer.getAnswer() + "! Абсолютно верно!");
                 flag = true;
             } else {
                 System.out.println("Якубович: Неверно! Следующий игрок!");
@@ -67,7 +65,7 @@ public final class Yakubovich {
             return flag;
         }
 
-        if (tableau.openLetter(answer.charAt(0))) {
+        if (tableau.openLetter(playerAnswer.getAnswer().charAt(0))) {
             System.out.println("Якубович: Есть такая буква, откройте ее!");
             flag = true;
         } else {
