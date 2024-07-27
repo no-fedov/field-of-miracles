@@ -52,27 +52,25 @@ public final class Yakubovich {
     }
 
     public boolean checkAnswer(PlayerAnswer playerAnswer, Tableau tableau, Question question) {
-        boolean flag = false;
 
         if (playerAnswer.getType() == AnswerType.WORD) {
             if (question.getAnswer().equals(playerAnswer.getAnswer())) {
                 System.out.println("Якубович: " + playerAnswer.getAnswer() + "! Абсолютно верно!");
-                flag = true;
-            } else {
-                System.out.println("Якубович: Неверно! Следующий игрок!");
+                System.out.println("__________________________________");
+                tableau.showAnswer();
+                return true;
             }
-            System.out.println("__________________________________");
-            tableau.showAnswer();
-            return flag;
+            System.out.println("Якубович: Неверно! Следующий игрок!");
+            return false;
         }
 
         if (tableau.openLetter(playerAnswer.getAnswer().charAt(0))) {
             System.out.println("Якубович: Есть такая буква, откройте ее!");
-            flag = true;
-        } else {
-            System.out.println("Якубович: Нет такой буквы! Следующий игрок, крутите барабан!");
+            return true;
         }
+
+        System.out.println("Якубович: Нет такой буквы! Следующий игрок, крутите барабан!");
         System.out.println("__________________________________");
-        return flag;
+        return false;
     }
 }
