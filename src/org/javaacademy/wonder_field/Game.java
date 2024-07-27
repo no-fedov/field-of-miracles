@@ -96,10 +96,10 @@ public class Game {
         this.tableau.initTableau(questions[round - 1]);
         this.yakubovich.invitePlayers(players, round);
         this.yakubovich.askPlayers(questions[round - 1]);
+        this.tableau.showTableau();
 
         while (this.tableau.isContainUnknownLetter()) {
             for (Player player : players) {
-
                 boolean isRightAnswer = true;
 
                 while (isRightAnswer) {
@@ -112,7 +112,7 @@ public class Game {
 
                     if (isWinner()) {
                         if (round <= FINAL_ROUND_ID) {
-                            winners[round] = player;
+                            winners[round-1] = player;
                         }
                         yakubovich.announceWinner(player, false);
                         return;
@@ -123,9 +123,47 @@ public class Game {
 
     }
 
+    private void playGroupRounds() {
+        for (int i = 1; i <= FINAL_ROUND_ID; i++) {
+            Player[] players = generatePlayers();
+            playRound(players, i);
+        }
+    }
+
+    private void playFinalRound() {
+        this.tableau.initTableau(questions[ROUNDS - 1]);
+        this.yakubovich.invitePlayers(winners, ROUNDS);
+        this.yakubovich.askPlayers(questions[ROUNDS-1]);
+        this.tableau.showTableau();
+
+        while (this.tableau.isContainUnknownLetter()) {
+            for (Player player : winners) {
+                boolean isRightAnswer = true;
+
+                while (isRightAnswer) {
+                    isRightAnswer = yakubovich.checkAnswer(player.move(SCANNER), this.tableau
+                            , this.questions[ROUNDS-1]);
+
+                    if (isRightAnswer && tableau.isContainUnknownLetter()) {
+                        this.tableau.showTableau();
+                    }
+
+                    if (isWinner()) {
+                        yakubovich.announceWinner(player, true);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
     public void run() throws InterruptedException {
         fakeInitQuestionsAndAnswers();
-        playRound(generatePlayers(), 1);
+        yakubovich.startShow();
+        playGroupRounds();
+        playFinalRound();
+        SCANNER.close();
+        yakubovich.endShow();
     }
 
     private void fakeInitQuestionsAndAnswers() throws InterruptedException {

@@ -32,6 +32,7 @@ public final class Yakubovich {
 
         if (round == 4) {
             System.out.println("Якубович: приглашаю победителей групповых этапов: " + playerNames);
+            return;
         }
         System.out.println("Якубович: приглашаю " + round + "-ю тройку игроков: " + playerNames);
     }

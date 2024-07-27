@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="625d23f6-328d-4bc2-a525-842886d482e2" name="Changes" comment="fix: иправлена логика хода игрока">
+    <list default="true" id="625d23f6-328d-4bc2-a525-842886d482e2" name="Changes" comment="fix: change logic checkAnswer in Yakubovich">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/javaacademy/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/player/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Tableau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Tableau.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Yakubovich.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Yakubovich.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/поле чудес v1.1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/поле чудес v1.1.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +49,7 @@
   "keyToString": {
     "Application.Game.executor": "Run",
     "Application.Player.executor": "Run",
-    "Application.Runner.executor": "Debug",
+    "Application.Runner.executor": "Run",
     "Application.Tableau.executor": "Run",
     "Application.Yakubovich.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -186,7 +182,23 @@
       <option name="project" value="LOCAL" />
       <updated>1722041772406</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feature: stage 5 , make 6 points">
+      <option name="closed" value="true" />
+      <created>1722076799563</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1722076799563</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix: change logic checkAnswer in Yakubovich">
+      <option name="closed" value="true" />
+      <created>1722078886724</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1722078886724</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -210,15 +222,17 @@
     <MESSAGE value="feature: make 4 stage" />
     <MESSAGE value="fix: правки после ревью" />
     <MESSAGE value="fix: иправлена логика хода игрока" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: иправлена логика хода игрока" />
+    <MESSAGE value="feature: stage 5 , make 6 points" />
+    <MESSAGE value="fix: change logic checkAnswer in Yakubovich" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: change logic checkAnswer in Yakubovich" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/org/javaacademy/wonder_field/Game.java</url>
-          <line>116</line>
-          <option name="timeStamp" value="2" />
+          <line>134</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
