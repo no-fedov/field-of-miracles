@@ -7,7 +7,7 @@ import org.javaacademy.player.PlayerAnswer;
 import java.util.Scanner;
 
 public class Game {
-    public static final Scanner SCANNER = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     private static final int PLAYERS = 3;
     private static final int ROUNDS = 4;
@@ -41,18 +41,13 @@ public class Game {
 
     private Player[] generatePlayers() {
         Player[] players = new Player[PLAYERS];
-
-//        for (int i = 0; i < PLAYERS; i++) {
-//            System.out.println("Игрок №" + (i + 1) + " представьтесь: имя,город.");
-//            String nameAndCity = SCANNER.nextLine();
-//            String[] playerInfo = nameAndCity.split(",");
-//            assert playerInfo.length == 2;
-//            players[i] = new Player(playerInfo[0], playerInfo[1]);
-//        }
-
-        players[0] = new Player("Саша", "Москва");
-        players[1] = new Player("Артем", "Белгород");
-        players[2] = new Player("Коля", "Боговарово");
+        for (int i = 0; i < PLAYERS; i++) {
+            System.out.println("Игрок №" + (i + 1) + " представьтесь: имя,город.");
+            String nameAndCity = SCANNER.nextLine();
+            String[] playerInfo = nameAndCity.split(",");
+            assert playerInfo.length > 2;
+            players[i] = new Player(playerInfo[0], playerInfo[1]);
+        }
         return players;
     }
 
@@ -86,7 +81,6 @@ public class Game {
             } else {
                 return false;
             }
-
         } while (tableau.isContainUnknownLetter());
 
         return isRight;
@@ -112,7 +106,7 @@ public class Game {
 
                     if (isWinner()) {
                         if (round <= FINAL_ROUND_ID) {
-                            winners[round-1] = player;
+                            winners[round - 1] = player;
                         }
                         yakubovich.announceWinner(player, false);
                         return;
@@ -133,7 +127,7 @@ public class Game {
     private void playFinalRound() {
         this.tableau.initTableau(questions[ROUNDS - 1]);
         this.yakubovich.invitePlayers(winners, ROUNDS);
-        this.yakubovich.askPlayers(questions[ROUNDS-1]);
+        this.yakubovich.askPlayers(questions[ROUNDS - 1]);
         this.tableau.showTableau();
 
         while (this.tableau.isContainUnknownLetter()) {
@@ -142,7 +136,7 @@ public class Game {
 
                 while (isRightAnswer) {
                     isRightAnswer = yakubovich.checkAnswer(player.move(SCANNER), this.tableau
-                            , this.questions[ROUNDS-1]);
+                            , this.questions[ROUNDS - 1]);
 
                     if (isRightAnswer && tableau.isContainUnknownLetter()) {
                         this.tableau.showTableau();
@@ -158,53 +152,11 @@ public class Game {
     }
 
     public void run() throws InterruptedException {
-        fakeInitQuestionsAndAnswers();
+        init();
         yakubovich.startShow();
         playGroupRounds();
         playFinalRound();
         SCANNER.close();
         yakubovich.endShow();
-    }
-
-    private void fakeInitQuestionsAndAnswers() throws InterruptedException {
-        System.out.println("Запуск игры \"Поле Чудес\"");
-
-        questions[0] = new Question("В Полотняной стране\n" +
-                "По реке Простыне\n" +
-                "Плывет пароход\n" +
-                "То назад, то вперед,\n" +
-                "А за ним такая гладь —\n" +
-                "Ни морщинки не видать.", "УТЮГ");
-
-        questions[1] = new Question("В брюшке — баня,\n" +
-                "В носу — решето,\n" +
-                "Нос — хоботок,\n" +
-                "На голове — пупок,\n" +
-                "Всего одна рука\n" +
-                "Без пальчиков,\n" +
-                "И та — на спине\n" +
-                "Калачиком.", "ЧАЙНИК");
-
-        questions[2] = new Question("Стоит дуб,\n" +
-                "В нем двенадцать гнезд,\n" +
-                "В каждом гнезде\n" +
-                "По четыре яйца,\n" +
-                "В каждом яйце\n" +
-                "По семи цыпленков.", "ГОД");
-
-        questions[3] = new Question("Вдруг из черной темноты\n" +
-                "В небе выросли кусты.\n" +
-                "А на них-то голубые,\n" +
-                "Пунцовые, золотые\n" +
-                "Распускаются цветы\n" +
-                "Небывалой красоты.\n" +
-                "И все улицы под ними\n" +
-                "Тоже стали голубыми,\n" +
-                "Пунцовыми, золотыми,\n" +
-                "Разноцветными.", "САЛЮТ");
-
-        System.out.println("Иницализация закончена, игра начнется через 5 секунд");
-        Thread.sleep(SLEEP_TIME);
-        System.out.println("\n".repeat(50));
     }
 }
