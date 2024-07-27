@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="625d23f6-328d-4bc2-a525-842886d482e2" name="Changes" comment="feature: make 4 stage">
+    <list default="true" id="625d23f6-328d-4bc2-a525-842886d482e2" name="Changes" comment="fix: иправлена логика хода игрока">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Runner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/javaacademy/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/javaacademy/player/PlayerAnswer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/player/PlayerAnswer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Tableau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Tableau.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Yakubovich.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Yakubovich.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/поле чудес v1.1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/поле чудес v1.1.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +53,7 @@
   "keyToString": {
     "Application.Game.executor": "Run",
     "Application.Player.executor": "Run",
+    "Application.Runner.executor": "Debug",
     "Application.Tableau.executor": "Run",
     "Application.Yakubovich.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -65,7 +67,7 @@
     "settings.editor.selected.configurable": "terminal"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.Yakubovich">
+  <component name="RunManager" selected="Application.Runner">
     <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.javaacademy.wonder_field.Game" />
       <module name="field-of-miracles" />
@@ -88,6 +90,13 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Runner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Runner" />
+      <module name="field-of-miracles" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -120,6 +129,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Runner" />
         <item itemvalue="Application.Yakubovich" />
         <item itemvalue="Application.Player" />
         <item itemvalue="Application.Tableau" />
@@ -160,7 +170,23 @@
       <option name="project" value="LOCAL" />
       <updated>1721933431285</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="fix: правки после ревью">
+      <option name="closed" value="true" />
+      <created>1722040201903</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1722040201903</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix: иправлена логика хода игрока">
+      <option name="closed" value="true" />
+      <created>1722041772406</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1722041772406</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -182,6 +208,19 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feature: make 4 stage" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature: make 4 stage" />
+    <MESSAGE value="fix: правки после ревью" />
+    <MESSAGE value="fix: иправлена логика хода игрока" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: иправлена логика хода игрока" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/org/javaacademy/wonder_field/Game.java</url>
+          <line>116</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

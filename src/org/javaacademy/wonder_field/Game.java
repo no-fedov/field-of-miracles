@@ -42,13 +42,17 @@ public class Game {
     private Player[] generatePlayers() {
         Player[] players = new Player[PLAYERS];
 
-        for (int i = 0; i < PLAYERS; i++) {
-            System.out.println("Игрок №" + (i + 1) + " представьтесь: имя,город.");
-            String nameAndCity = SCANNER.nextLine();
-            String[] playerInfo = nameAndCity.split(",");
-            assert playerInfo.length == 2;
-            players[i] = new Player(playerInfo[0], playerInfo[1]);
-        }
+//        for (int i = 0; i < PLAYERS; i++) {
+//            System.out.println("Игрок №" + (i + 1) + " представьтесь: имя,город.");
+//            String nameAndCity = SCANNER.nextLine();
+//            String[] playerInfo = nameAndCity.split(",");
+//            assert playerInfo.length == 2;
+//            players[i] = new Player(playerInfo[0], playerInfo[1]);
+//        }
+
+        players[0] = new Player("Саша", "Москва");
+        players[1] = new Player("Артем", "Белгород");
+        players[2] = new Player("Коля", "Боговарово");
         return players;
     }
 
@@ -89,12 +93,39 @@ public class Game {
     }
 
     private void playRound(Player[] players, int round) {
-        this.tableau.initTableau(questions[round]);
-        yakubovich.askPlayers();
+        this.tableau.initTableau(questions[round - 1]);
+        this.yakubovich.invitePlayers(players, round);
+        this.yakubovich.askPlayers(questions[round - 1]);
+
+        while (this.tableau.isContainUnknownLetter()) {
+            for (Player player : players) {
+
+                boolean isRightAnswer = true;
+
+                while (isRightAnswer) {
+                    isRightAnswer = yakubovich.checkAnswer(player.move(SCANNER), this.tableau
+                            , this.questions[round - 1]);
+
+                    if (isRightAnswer && tableau.isContainUnknownLetter()) {
+                        this.tableau.showTableau();
+                    }
+
+                    if (isWinner()) {
+                        if (round <= FINAL_ROUND_ID) {
+                            winners[round] = player;
+                        }
+                        yakubovich.announceWinner(player, false);
+                        return;
+                    }
+                }
+            }
+        }
+
     }
 
-    public void run() {
-
+    public void run() throws InterruptedException {
+        fakeInitQuestionsAndAnswers();
+        playRound(generatePlayers(), 1);
     }
 
     private void fakeInitQuestionsAndAnswers() throws InterruptedException {
@@ -114,7 +145,7 @@ public class Game {
                 "Всего одна рука\n" +
                 "Без пальчиков,\n" +
                 "И та — на спине\n" +
-                "Калачиком.", "ЧАЙНИК")
+                "Калачиком.", "ЧАЙНИК");
 
         questions[2] = new Question("Стоит дуб,\n" +
                 "В нем двенадцать гнезд,\n" +

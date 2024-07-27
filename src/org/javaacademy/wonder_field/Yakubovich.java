@@ -62,6 +62,7 @@ public final class Yakubovich {
                 System.out.println("Якубович: Неверно! Следующий игрок!");
             }
             System.out.println("__________________________________");
+            tableau.showAnswer();
             return flag;
         }
 

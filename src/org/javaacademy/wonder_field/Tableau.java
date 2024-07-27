@@ -45,6 +45,7 @@ public class Tableau {
         String answer = "";
 
         for (int i = 0; i < rightAnswer.length(); i++) {
+            lettersOnTableau[i] = rightAnswer.charAt(i);
             answer += whitespace + rightAnswer.charAt(i);
         }
 

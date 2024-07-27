@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Player {
     private static final String LETTER = "б";
-    private static final String WORD = "c";
+    private static final String WORD = "с";
 
     private final String name;
     private final String city;
