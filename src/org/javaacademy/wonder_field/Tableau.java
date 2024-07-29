@@ -1,7 +1,5 @@
 package org.javaacademy.wonder_field;
 
-import java.util.Scanner;
-
 public class Tableau {
     private String rightAnswer;
     private char[] lettersOnTableau;

@@ -5,11 +5,16 @@ import org.javaacademy.player.Player;
 import org.javaacademy.player.PlayerAnswer;
 
 public final class Yakubovich {
-
-    // прочиттать как правильно делать синглтон
-    public static final Yakubovich YAKUBOVICH = new Yakubovich();
+    private static Yakubovich YAKUBOVICH;
 
     private Yakubovich() {
+    }
+
+    public static Yakubovich getInstance() {
+        if (YAKUBOVICH == null) {
+            YAKUBOVICH = new Yakubovich();
+        }
+        return YAKUBOVICH;
     }
 
     public void startShow() {
@@ -25,12 +30,12 @@ public final class Yakubovich {
     public void invitePlayers(Player[] players, int round) {
         String playerNames = "";
 
-        // последнюю запятую убрать
         for (Player player : players) {
             playerNames += player.getName() + ", ";
         }
+        playerNames = playerNames.substring(0, playerNames.length() - 2);
 
-        if (round == 4) {
+        if (round == Game.ROUNDS) {
             System.out.println("Якубович: приглашаю победителей групповых этапов: " + playerNames);
             return;
         }
@@ -53,7 +58,6 @@ public final class Yakubovich {
     }
 
     public boolean checkAnswer(PlayerAnswer playerAnswer, Tableau tableau, Question question) {
-
         if (playerAnswer.getType() == AnswerType.WORD) {
             if (question.getAnswer().equals(playerAnswer.getAnswer())) {
                 System.out.println("Якубович: " + playerAnswer.getAnswer() + "! Абсолютно верно!");

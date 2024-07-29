@@ -9,14 +9,14 @@ import java.util.Scanner;
 public class Game {
     private static final Scanner SCANNER = new Scanner(System.in);
 
+    public static final int ROUNDS = 4;
     private static final int PLAYERS = 3;
-    private static final int ROUNDS = 4;
     private static final int GROUP_ROUNDS = 3;
     private static final int FINAL_ROUND_ID = 3;
     private static final int SLEEP_TIME = 5000;
 
     private final Tableau tableau = new Tableau();
-    private final Yakubovich yakubovich = Yakubovich.YAKUBOVICH;
+    private final Yakubovich yakubovich = Yakubovich.getInstance();
 
     private final Question[] questions = new Question[ROUNDS];
     private final Player[] winners = new Player[GROUP_ROUNDS];
@@ -45,23 +45,12 @@ public class Game {
             System.out.println("Игрок №" + (i + 1) + " представьтесь: имя,город.");
             String nameAndCity = SCANNER.nextLine();
             String[] playerInfo = nameAndCity.split(",");
-            assert playerInfo.length > 2;
             players[i] = new Player(playerInfo[0], playerInfo[1]);
         }
         return players;
     }
 
-    private String[] getPlayerNames(Player[] players) {
-        String[] playerNames = new String[players.length];
-
-        for (int i = 0; i < PLAYERS; i++) {
-            playerNames[i] = players[i].getName();
-        }
-
-        return playerNames;
-    }
-
-    private boolean isWinner() {
+    private boolean isWin() {
         return !this.tableau.isContainUnknownLetter();
     }
 
@@ -87,34 +76,26 @@ public class Game {
     }
 
     private void playRound(Player[] players, int round) {
-        this.tableau.initTableau(questions[round - 1]);
+        Question question = questions[round - 1];
+
+        this.tableau.initTableau(question);
         this.yakubovich.invitePlayers(players, round);
-        this.yakubovich.askPlayers(questions[round - 1]);
+        this.yakubovich.askPlayers(question);
         this.tableau.showTableau();
 
-        while (this.tableau.isContainUnknownLetter()) {
+        while (true) {
             for (Player player : players) {
-                boolean isRightAnswer = true;
-
-                while (isRightAnswer) {
-                    isRightAnswer = yakubovich.checkAnswer(player.move(SCANNER), this.tableau
-                            , this.questions[round - 1]);
-
-                    if (isRightAnswer && tableau.isContainUnknownLetter()) {
-                        this.tableau.showTableau();
-                    }
-
-                    if (isWinner()) {
-                        if (round <= FINAL_ROUND_ID) {
-                            winners[round - 1] = player;
-                        }
+                while (playerMakeMove(player, question)) {
+                    if (isWin()) {
+                        winners[round-1] = player;
                         yakubovich.announceWinner(player, false);
                         return;
+                    } else {
+                        this.tableau.showTableau();
                     }
                 }
             }
         }
-
     }
 
     private void playGroupRounds() {
@@ -125,26 +106,21 @@ public class Game {
     }
 
     private void playFinalRound() {
-        this.tableau.initTableau(questions[ROUNDS - 1]);
+        Question question = questions[ROUNDS-1];
+
+        this.tableau.initTableau(question);
         this.yakubovich.invitePlayers(winners, ROUNDS);
-        this.yakubovich.askPlayers(questions[ROUNDS - 1]);
+        this.yakubovich.askPlayers(question);
         this.tableau.showTableau();
 
-        while (this.tableau.isContainUnknownLetter()) {
+        while (true) {
             for (Player player : winners) {
-                boolean isRightAnswer = true;
-
-                while (isRightAnswer) {
-                    isRightAnswer = yakubovich.checkAnswer(player.move(SCANNER), this.tableau
-                            , this.questions[ROUNDS - 1]);
-
-                    if (isRightAnswer && tableau.isContainUnknownLetter()) {
-                        this.tableau.showTableau();
-                    }
-
-                    if (isWinner()) {
+                while (playerMakeMove(player, question)) {
+                    if (isWin()) {
                         yakubovich.announceWinner(player, true);
                         return;
+                    } else {
+                        this.tableau.showTableau();
                     }
                 }
             }

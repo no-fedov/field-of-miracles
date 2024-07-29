@@ -31,7 +31,7 @@ public class Player {
         String choice;
 
         while (true) {
-            choice = scanner.next();
+            choice = scanner.nextLine();
 
             if (choice.equals(LETTER) || choice.equals(WORD)) {
                 break;
@@ -51,7 +51,7 @@ public class Player {
         boolean flag = false;
 
         while (!flag) {
-            letter = scanner.next().toUpperCase();
+            letter = scanner.nextLine().toUpperCase();
             if (letter.length() == 1) {
                 for (char letters : Alphabet.ALPHABET) {
                     if (letters == letter.charAt(0)) {
@@ -70,7 +70,7 @@ public class Player {
     }
 
     private String sayWord(Scanner scanner) {
-        String word = scanner.next().toUpperCase();
+        String word = scanner.nextLine().toUpperCase();
         System.out.println("Игрок " + name + ": слово - " + word);
         return word;
     }
