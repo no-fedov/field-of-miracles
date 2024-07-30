@@ -1,6 +1,8 @@
 package org.javaacademy.player;
 
 import org.javaacademy.wonder_field.Alphabet;
+import org.javaacademy.wonder_field.cylinder.Cylinder;
+import org.javaacademy.wonder_field.cylinder.Section;
 
 import java.util.Scanner;
 
@@ -10,6 +12,7 @@ public class Player {
 
     private final String name;
     private final String city;
+    private int raiting;
 
     public Player(String name, String city) {
         this.name = name;
@@ -22,6 +25,10 @@ public class Player {
 
     public String getCity() {
         return city;
+    }
+
+    public int getRaiting() {
+        return raiting;
     }
 
     public PlayerAnswer move(Scanner scanner) {
@@ -44,6 +51,20 @@ public class Player {
             return new PlayerAnswer(this.sayLatter(scanner).toUpperCase(), AnswerType.LETTER);
         }
         return new PlayerAnswer(this.sayWord(scanner).toUpperCase(), AnswerType.WORD);
+    }
+
+    public boolean spinCylinder(Cylinder cylinder) {
+        Section section = cylinder.spin();
+        switch (section) {
+            case X_2:
+                this.raiting *= 2;
+                return true;
+            case SKIP:
+                return false;
+            default:
+                this.raiting += section.getValue();
+        }
+        return true;
     }
 
     private String sayLatter(Scanner scanner) {
