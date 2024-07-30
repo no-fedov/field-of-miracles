@@ -3,6 +3,9 @@ package org.javaacademy.wonder_field;
 import org.javaacademy.player.AnswerType;
 import org.javaacademy.player.Player;
 import org.javaacademy.player.PlayerAnswer;
+import org.javaacademy.wonder_field.cylinder.Cylinder;
+import org.javaacademy.wonder_field.tableau.LetterException;
+import org.javaacademy.wonder_field.tableau.Tableau;
 
 import java.util.Scanner;
 
@@ -17,6 +20,7 @@ public class Game {
 
     private final Tableau tableau = new Tableau();
     private final Yakubovich yakubovich = Yakubovich.getInstance();
+    private final Cylinder cylinder = Cylinder.getInstance();
 
     private final Question[] questions = new Question[ROUNDS];
     private final Player[] winners = new Player[GROUP_ROUNDS];
@@ -24,29 +28,36 @@ public class Game {
     private void init() throws InterruptedException {
         System.out.println("Запуск игры \"Поле Чудес\"");
 
-        for (int i = 1; i <= ROUNDS; i++) {
-            System.out.println("Введите вопрос #" + i);
-            String questions = SCANNER.nextLine();
-
-            System.out.println("Введите ответ вопрос #" + i);
-            String answer = SCANNER.nextLine().toUpperCase();
-
-            this.questions[i - 1] = new Question(questions, answer);
-        }
+//        for (int i = 1; i <= ROUNDS; i++) {
+//            System.out.println("Введите вопрос #" + i);
+//            String questions = SCANNER.nextLine();
+//
+//            System.out.println("Введите ответ вопрос #" + i);
+//            String answer = SCANNER.nextLine().toUpperCase();
+//
+//            this.questions[i - 1] = new Question(questions, answer);
+//        }
+        questions[0] = new Question("1", "МОРКОВЬ");
+        questions[1] = new Question("2", "КАПУСТА");
+        questions[2] = new Question("3", "ПОДСОЛНУХ");
+        questions[3] = new Question("4", "ТРУСЫ");
 
         System.out.println("Иницализация закончена, игра начнется через 5 секунд");
-        Thread.sleep(SLEEP_TIME);
+//        Thread.sleep(SLEEP_TIME);
         System.out.println("\n".repeat(50));
     }
 
     private Player[] generatePlayers() {
         Player[] players = new Player[PLAYERS];
-        for (int i = 0; i < PLAYERS; i++) {
-            System.out.println("Игрок №" + (i + 1) + " представьтесь: имя,город.");
-            String nameAndCity = SCANNER.nextLine();
-            String[] playerInfo = nameAndCity.split(",");
-            players[i] = new Player(playerInfo[0], playerInfo[1]);
-        }
+//        for (int i = 0; i < PLAYERS; i++) {
+//            System.out.println("Игрок №" + (i + 1) + " представьтесь: имя,город.");
+//            String nameAndCity = SCANNER.nextLine();
+//            String[] playerInfo = nameAndCity.split(",");
+//            players[i] = new Player(playerInfo[0], playerInfo[1]);
+//        }
+        players[0] = new Player("Artem ivanov", "Moscow");
+        players[1] = new Player("SASHA", "Moscow");
+        players[2] = new Player("Kolyan", "Moscow");
         return players;
     }
 
@@ -55,24 +66,35 @@ public class Game {
     }
 
     private boolean playerMakeMove(Player player, Question question) {
-        boolean isRight;
+        boolean isWasException = false;
 
-        do {
-            PlayerAnswer playerAnswer = player.move(SCANNER);
-            isRight = yakubovich.checkAnswer(playerAnswer, this.tableau, question);
-
-            if (isRight) {
-                if (playerAnswer.getType() == AnswerType.LETTER) {
-                    tableau.showTableau();
-                } else {
-                    return true;
+        while (tableau.isContainUnknownLetter()) {
+            if (!isWasException) {
+                boolean conditionForMove = player.spinCylinder(cylinder);
+                yakubovich.declareSection();
+                if (!conditionForMove) {
+                    return false;
                 }
-            } else {
-                return false;
             }
-        } while (tableau.isContainUnknownLetter());
-
-        return isRight;
+            PlayerAnswer playerAnswer = player.move(SCANNER);
+            try {
+                boolean isRight = yakubovich.checkAnswer(playerAnswer, this.tableau, question);
+                if (isRight) {
+                    if (playerAnswer.getType() == AnswerType.LETTER) {
+                        tableau.showTableau();
+                        isWasException = false;
+                    } else {
+                        return true;
+                    }
+                } else {
+                    return false;
+                }
+            } catch (LetterException ex) {
+                System.out.println(ex.getMessage());
+                isWasException = true;
+            }
+        }
+        return true;
     }
 
     private void playRound(Player[] players, int round) {
@@ -87,7 +109,7 @@ public class Game {
             for (Player player : players) {
                 while (playerMakeMove(player, question)) {
                     if (isWin()) {
-                        winners[round-1] = player;
+                        winners[round - 1] = player;
                         yakubovich.announceWinner(player, false);
                         return;
                     } else {
@@ -106,7 +128,7 @@ public class Game {
     }
 
     private void playFinalRound() {
-        Question question = questions[ROUNDS-1];
+        Question question = questions[ROUNDS - 1];
 
         this.tableau.initTableau(question);
         this.yakubovich.invitePlayers(winners, ROUNDS);

@@ -1,4 +1,4 @@
-package org.javaacademy.wonder_field;
+package org.javaacademy.wonder_field.tableau;
 
 public class Alphabet {
     public static final char[] ALPHABET = {'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М',

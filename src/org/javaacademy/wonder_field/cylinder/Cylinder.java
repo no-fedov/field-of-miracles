@@ -1,11 +1,15 @@
 package org.javaacademy.wonder_field.cylinder;
 
 public class Cylinder {
-    public static Section position;
-    private final Section[] values = Section.values();
+    private static Section position;
     private static Cylinder CYLINDER;
+    private final Section[] values = Section.values();
 
     private Cylinder() {
+    }
+
+    public Section getPosition() {
+        return position;
     }
 
     public static Cylinder getInstance() {
@@ -17,6 +21,7 @@ public class Cylinder {
 
     public Section spin() {
         int position = (int) (values.length * Math.random());
-        return values[position];
+        Cylinder.position = values[position];
+        return Cylinder.position;
     }
 }

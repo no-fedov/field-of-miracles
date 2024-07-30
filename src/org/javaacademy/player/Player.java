@@ -1,6 +1,6 @@
 package org.javaacademy.player;
 
-import org.javaacademy.wonder_field.Alphabet;
+import org.javaacademy.wonder_field.tableau.Alphabet;
 import org.javaacademy.wonder_field.cylinder.Cylinder;
 import org.javaacademy.wonder_field.cylinder.Section;
 
@@ -12,7 +12,7 @@ public class Player {
 
     private final String name;
     private final String city;
-    private int raiting;
+    private int rating;
 
     public Player(String name, String city) {
         this.name = name;
@@ -27,8 +27,8 @@ public class Player {
         return city;
     }
 
-    public int getRaiting() {
-        return raiting;
+    public int getRating() {
+        return rating;
     }
 
     public PlayerAnswer move(Scanner scanner) {
@@ -57,12 +57,12 @@ public class Player {
         Section section = cylinder.spin();
         switch (section) {
             case X_2:
-                this.raiting *= 2;
+                this.rating *= 2;
                 return true;
             case SKIP:
                 return false;
             default:
-                this.raiting += section.getValue();
+                this.rating += section.getValue();
         }
         return true;
     }

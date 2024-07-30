@@ -1,4 +1,6 @@
-package org.javaacademy.wonder_field;
+package org.javaacademy.wonder_field.tableau;
+
+import org.javaacademy.wonder_field.Question;
 
 public class Tableau {
     private String rightAnswer;
@@ -30,6 +32,9 @@ public class Tableau {
 
         for (int i = 0; i < lettersOnTableau.length; i++) {
             if (letter == rightAnswer.charAt(i)) {
+                if (lettersOnTableau[i] == letter) {
+                    throw new LetterException("Нельзя открывать одну букву дважды");
+                }
                 lettersOnTableau[i] = letter;
                 flag = true;
             }

@@ -3,6 +3,8 @@ package org.javaacademy.wonder_field;
 import org.javaacademy.player.AnswerType;
 import org.javaacademy.player.Player;
 import org.javaacademy.player.PlayerAnswer;
+import org.javaacademy.wonder_field.cylinder.Cylinder;
+import org.javaacademy.wonder_field.tableau.Tableau;
 
 public final class Yakubovich {
     private static Yakubovich YAKUBOVICH;
@@ -50,11 +52,13 @@ public final class Yakubovich {
     public void announceWinner(Player player, boolean isFinalRound) {
         if (isFinalRound) {
             System.out.println("Якубович: И перед нами победитель Капитал шоу поле чудес! Это "
-                    + player.getName() + " из " + player.getCity());
+                    + player.getName() + " из " + player.getCity()
+                    + ". Он набрал " + player.getRating() + " очков.");
             return;
         }
         System.out.println("Якубович: Молодец! " + player.getName() + " из "
-                + player.getCity() + " проходит в финал!");
+                + player.getCity() + " проходит в финал! "
+                + "Он набрал " + player.getRating() + " очков.");
     }
 
     public boolean checkAnswer(PlayerAnswer playerAnswer, Tableau tableau, Question question) {
@@ -77,5 +81,9 @@ public final class Yakubovich {
         System.out.println("Якубович: Нет такой буквы! Следующий игрок, крутите барабан!");
         System.out.println("__________________________________");
         return false;
+    }
+
+    public void declareSection() {
+        System.out.println("Якубович: " + Cylinder.getInstance().getPosition().getDescription());
     }
 }
