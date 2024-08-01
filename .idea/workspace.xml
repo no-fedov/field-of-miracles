@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="625d23f6-328d-4bc2-a525-842886d482e2" name="Changes" comment="feature: complete 6 stage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/javaacademy/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/player/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Yakubovich.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Yakubovich.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/cylinder/Cylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/cylinder/Cylinder.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +60,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/no_fedov/Desktop/ablazzing/field-of-miracles&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/no_fedov/Desktop/ablazzing/java_core_4&quot;,
     &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -258,7 +258,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722350028971</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="feature: complete 6 stage">
+      <option name="closed" value="true" />
+      <created>1722399719163</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1722399719163</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

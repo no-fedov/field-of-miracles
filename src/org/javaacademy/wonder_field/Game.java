@@ -7,6 +7,7 @@ import org.javaacademy.wonder_field.cylinder.Cylinder;
 import org.javaacademy.wonder_field.tableau.LetterException;
 import org.javaacademy.wonder_field.tableau.Tableau;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
@@ -65,14 +66,24 @@ public class Game {
         return !this.tableau.isContainUnknownLetter();
     }
 
-    private boolean playerMakeMove(Player player, Question question) {
-        boolean isWasException = false;
+    private boolean spinCylinder(Player player, Cylinder cylinder) {
+        boolean conditionForMove = player.spinCylinder(cylinder);
+        yakubovich.declareSection();
+        return conditionForMove;
+    }
 
-        while (tableau.isContainUnknownLetter()) {
-            if (!isWasException) {
-                boolean conditionForMove = player.spinCylinder(cylinder);
-                yakubovich.declareSection();
-                if (!conditionForMove) {
+    private Box[] generateBox() {
+        Random rnd = new Random();
+        boolean condition = rnd.nextBoolean();
+        return new Box[]{new Box(condition), new Box(!condition)};
+    }
+
+    private boolean playerMakeMove(Player player, Question question) {
+        boolean hasException = false;
+        int letterCounter = 0;
+        while (!isWin()) {
+            if (!hasException) {
+                if (!spinCylinder(player, cylinder)) {
                     return false;
                 }
             }
@@ -82,7 +93,11 @@ public class Game {
                 if (isRight) {
                     if (playerAnswer.getType() == AnswerType.LETTER) {
                         tableau.showTableau();
-                        isWasException = false;
+                        hasException = false;
+                        letterCounter++;
+                        if (letterCounter % 3 == 0) {
+                            yakubovich.declareBox(player, generateBox(), SCANNER);
+                        }
                     } else {
                         return true;
                     }
@@ -91,7 +106,7 @@ public class Game {
                 }
             } catch (LetterException ex) {
                 System.out.println(ex.getMessage());
-                isWasException = true;
+                hasException = true;
             }
         }
         return true;

@@ -13,10 +13,19 @@ public class Player {
     private final String name;
     private final String city;
     private int rating;
+    private int money;
 
     public Player(String name, String city) {
         this.name = name;
         this.city = city;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public int getMoney() {
+        return money;
     }
 
     public String getName() {

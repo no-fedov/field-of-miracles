@@ -6,8 +6,12 @@ import org.javaacademy.player.PlayerAnswer;
 import org.javaacademy.wonder_field.cylinder.Cylinder;
 import org.javaacademy.wonder_field.tableau.Tableau;
 
+import java.util.Scanner;
+
 public final class Yakubovich {
     private static Yakubovich YAKUBOVICH;
+    private static final String LEFT = "л";
+    private static final String RIGHT = "п";
 
     private Yakubovich() {
     }
@@ -85,5 +89,36 @@ public final class Yakubovich {
 
     public void declareSection() {
         System.out.println("Якубович: " + Cylinder.getInstance().getPosition().getDescription());
+    }
+
+    public void declareBox(Player player, Box[] box, Scanner scanner) {
+        System.out.println(player.getName()+", Вы отгадали 3 буквы подряд. Выберите левую или правую шкатулку");
+        System.out.println("Введите 'л' - если хотите левую, введите 'п' - если хотите правую.");
+        String choice;
+
+        while (true) {
+            choice = scanner.nextLine();
+
+            if (choice.equals(LEFT) || choice.equals(RIGHT)) {
+                break;
+            } else {
+                System.out.println("Некорректное значение, введите 'л' или 'п'.");
+            }
+        }
+
+        if (choice.equals(LEFT)) {
+            openBox(player, box[0]);
+        } else {
+            openBox(player, box[1]);
+        }
+    }
+
+    private void openBox(Player player, Box box) {
+        if (box.getMoney() > 0) {
+            System.out.println("Вам сегодня невероятно везет, вы угадали шкатулку, заберите ваши деньги!");
+            player.setMoney(box.getMoney());
+        } else {
+            System.out.println("Не хочется Вас огорчать, шкатулка пустая");
+        }
     }
 }
