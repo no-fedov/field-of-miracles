@@ -1,12 +1,11 @@
 package org.javaacademy.wonder_field;
 
 public class Box {
-    private static int MONEY = 5000;
-    private int money;
+    private final int money;
 
     public Box(boolean condition) {
         if (condition) {
-            money = MONEY;
+            money = 5000;
         } else {
             money = 0;
         }

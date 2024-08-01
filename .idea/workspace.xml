@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="625d23f6-328d-4bc2-a525-842886d482e2" name="Changes" comment="feature: complete 6 stage">
+    <list default="true" id="625d23f6-328d-4bc2-a525-842886d482e2" name="Changes" comment="feature: add box with money">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/javaacademy/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/player/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Box.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Yakubovich.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Yakubovich.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/поле чудес v1.1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/поле чудес v1.1.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +49,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.Box.executor&quot;: &quot;Debug&quot;,
     &quot;Application.DayOfWeek.executor&quot;: &quot;Run&quot;,
     &quot;Application.Game.executor&quot;: &quot;Run&quot;,
     &quot;Application.Player.executor&quot;: &quot;Run&quot;,
@@ -68,6 +70,19 @@
   }
 }</component>
   <component name="RunManager" selected="Application.Runner">
+    <configuration name="Box" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.javaacademy.wonder_field.Box" />
+      <module name="field-of-miracles" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.javaacademy.wonder_field.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DayOfWeek" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.javaacademy.wonder_field.cylinder.DayOfWeek" />
       <module name="field-of-miracles" />
@@ -114,26 +129,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Yakubovich" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.javaacademy.wonder_field.Yakubovich" />
-      <module name="field-of-miracles" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.javaacademy.wonder_field.cylinder.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Runner" />
+        <item itemvalue="Application.Box" />
         <item itemvalue="Application.Section" />
         <item itemvalue="Application.DayOfWeek" />
         <item itemvalue="Application.Singleton" />
-        <item itemvalue="Application.Yakubovich" />
       </list>
     </recent_temporary>
   </component>
@@ -266,7 +268,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722399719163</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="feature: add box with money">
+      <option name="closed" value="true" />
+      <created>1722471746761</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1722471746761</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -299,7 +309,8 @@
     <MESSAGE value="feature: add Cylinder" />
     <MESSAGE value="feature: add logic spinCylinder for Player" />
     <MESSAGE value="feature: complete 6 stage" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature: complete 6 stage" />
+    <MESSAGE value="feature: add box with money" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature: add box with money" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

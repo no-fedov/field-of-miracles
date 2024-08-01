@@ -87,12 +87,16 @@ public final class Yakubovich {
         return false;
     }
 
+    public boolean suggestSuperGame(Scanner scanner) {
+        return false;
+    }
+
     public void declareSection() {
         System.out.println("Якубович: " + Cylinder.getInstance().getPosition().getDescription());
     }
 
     public void declareBox(Player player, Box[] box, Scanner scanner) {
-        System.out.println(player.getName()+", Вы отгадали 3 буквы подряд. Выберите левую или правую шкатулку");
+        System.out.println(player.getName() + ", Вы отгадали 3 буквы подряд. Выберите левую или правую шкатулку");
         System.out.println("Введите 'л' - если хотите левую, введите 'п' - если хотите правую.");
         String choice;
 

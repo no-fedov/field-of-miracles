@@ -25,40 +25,34 @@ public class Game {
 
     private final Question[] questions = new Question[ROUNDS];
     private final Player[] winners = new Player[GROUP_ROUNDS];
+    private Question superQuestion;
 
     private void init() throws InterruptedException {
         System.out.println("Запуск игры \"Поле Чудес\"");
 
-//        for (int i = 1; i <= ROUNDS; i++) {
-//            System.out.println("Введите вопрос #" + i);
-//            String questions = SCANNER.nextLine();
-//
-//            System.out.println("Введите ответ вопрос #" + i);
-//            String answer = SCANNER.nextLine().toUpperCase();
-//
-//            this.questions[i - 1] = new Question(questions, answer);
-//        }
-        questions[0] = new Question("1", "МОРКОВЬ");
-        questions[1] = new Question("2", "КАПУСТА");
-        questions[2] = new Question("3", "ПОДСОЛНУХ");
-        questions[3] = new Question("4", "ТРУСЫ");
+        for (int i = 1; i <= ROUNDS; i++) {
+            System.out.println("Введите вопрос #" + i);
+            String questions = SCANNER.nextLine();
+
+            System.out.println("Введите ответ вопрос #" + i);
+            String answer = SCANNER.nextLine().toUpperCase();
+
+            this.questions[i - 1] = new Question(questions, answer);
+        }
 
         System.out.println("Иницализация закончена, игра начнется через 5 секунд");
-//        Thread.sleep(SLEEP_TIME);
+        Thread.sleep(SLEEP_TIME);
         System.out.println("\n".repeat(50));
     }
 
     private Player[] generatePlayers() {
         Player[] players = new Player[PLAYERS];
-//        for (int i = 0; i < PLAYERS; i++) {
-//            System.out.println("Игрок №" + (i + 1) + " представьтесь: имя,город.");
-//            String nameAndCity = SCANNER.nextLine();
-//            String[] playerInfo = nameAndCity.split(",");
-//            players[i] = new Player(playerInfo[0], playerInfo[1]);
-//        }
-        players[0] = new Player("Artem ivanov", "Moscow");
-        players[1] = new Player("SASHA", "Moscow");
-        players[2] = new Player("Kolyan", "Moscow");
+        for (int i = 0; i < PLAYERS; i++) {
+            System.out.println("Игрок №" + (i + 1) + " представьтесь: имя,город.");
+            String nameAndCity = SCANNER.nextLine();
+            String[] playerInfo = nameAndCity.split(",");
+            players[i] = new Player(playerInfo[0], playerInfo[1]);
+        }
         return players;
     }
 
