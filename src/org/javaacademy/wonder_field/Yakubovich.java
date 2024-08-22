@@ -4,6 +4,7 @@ import org.javaacademy.player.AnswerType;
 import org.javaacademy.player.Player;
 import org.javaacademy.player.PlayerAnswer;
 import org.javaacademy.wonder_field.cylinder.Cylinder;
+import org.javaacademy.wonder_field.tableau.LetterException;
 import org.javaacademy.wonder_field.tableau.Tableau;
 
 import java.util.Scanner;
@@ -65,7 +66,7 @@ public final class Yakubovich {
                 + "Он набрал " + player.getRating() + " очков.");
     }
 
-    public boolean checkAnswer(PlayerAnswer playerAnswer, Tableau tableau, Question question) {
+    public boolean checkAnswer(PlayerAnswer playerAnswer, Tableau tableau, Question question) throws LetterException {
         if (playerAnswer.getType() == AnswerType.WORD) {
             if (question.getAnswer().equals(playerAnswer.getAnswer())) {
                 System.out.println("Якубович: " + playerAnswer.getAnswer() + "! Абсолютно верно!");

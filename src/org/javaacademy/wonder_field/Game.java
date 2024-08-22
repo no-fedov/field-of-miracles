@@ -3,6 +3,7 @@ package org.javaacademy.wonder_field;
 import org.javaacademy.player.AnswerType;
 import org.javaacademy.player.Player;
 import org.javaacademy.player.PlayerAnswer;
+import org.javaacademy.player.PlayerMoveException;
 import org.javaacademy.wonder_field.cylinder.Cylinder;
 import org.javaacademy.wonder_field.tableau.LetterException;
 import org.javaacademy.wonder_field.tableau.Tableau;
@@ -60,50 +61,43 @@ public class Game {
         return !this.tableau.isContainUnknownLetter();
     }
 
-    private boolean spinCylinder(Player player, Cylinder cylinder) {
-        boolean conditionForMove = player.spinCylinder(cylinder);
-        yakubovich.declareSection();
-        return conditionForMove;
-    }
-
     private Box[] generateBox() {
         Random rnd = new Random();
         boolean condition = rnd.nextBoolean();
         return new Box[]{new Box(condition), new Box(!condition)};
     }
 
-    private boolean playerMakeMove(Player player, Question question) {
-        boolean hasException = false;
+    /**
+     * Игрок может делать ход, пока на барабане отличное от 0 количество очков.
+     * если на барабане 0 очков, выбрасывается исключение PlayerMoveException
+     */
+    private void playerMakeMove(Player player, Question question) throws PlayerMoveException {
         int letterCounter = 0;
+
         while (!isWin()) {
-            if (!hasException) {
-                if (!spinCylinder(player, cylinder)) {
-                    return false;
-                }
-            }
-            PlayerAnswer playerAnswer = player.move(SCANNER);
+            PlayerAnswer playerAnswer = player.move(SCANNER, cylinder);
+            boolean isRight = false;
+
             try {
-                boolean isRight = yakubovich.checkAnswer(playerAnswer, this.tableau, question);
-                if (isRight) {
-                    if (playerAnswer.getType() == AnswerType.LETTER) {
-                        tableau.showTableau();
-                        hasException = false;
-                        letterCounter++;
-                        if (letterCounter % 3 == 0) {
-                            yakubovich.declareBox(player, generateBox(), SCANNER);
-                        }
-                    } else {
-                        return true;
-                    }
-                } else {
-                    return false;
+                isRight = yakubovich.checkAnswer(playerAnswer, this.tableau, question);
+            } catch (LetterException e) {
+                System.out.println(e.getMessage());
+                continue;
+            }
+
+            if (isRight) {
+                if (playerAnswer.getType() == AnswerType.WORD) {
+                    return;
                 }
-            } catch (LetterException ex) {
-                System.out.println(ex.getMessage());
-                hasException = true;
+                tableau.showTableau();
+                letterCounter++;
+                if (letterCounter % 3 == 0) {
+                    yakubovich.declareBox(player, generateBox(), SCANNER);
+                }
+            } else {
+                return;
             }
         }
-        return true;
     }
 
     private void playRound(Player[] players, int round) {
@@ -116,7 +110,8 @@ public class Game {
 
         while (true) {
             for (Player player : players) {
-                while (playerMakeMove(player, question)) {
+                try {
+                    playerMakeMove(player, question);
                     if (isWin()) {
                         winners[round - 1] = player;
                         yakubovich.announceWinner(player, false);
@@ -124,6 +119,8 @@ public class Game {
                     } else {
                         this.tableau.showTableau();
                     }
+                } catch (PlayerMoveException e) {
+                    System.out.println(e.getMessage());
                 }
             }
         }
@@ -146,13 +143,16 @@ public class Game {
 
         while (true) {
             for (Player player : winners) {
-                while (playerMakeMove(player, question)) {
+                try {
+                    playerMakeMove(player, question);
                     if (isWin()) {
                         yakubovich.announceWinner(player, true);
                         return;
                     } else {
                         this.tableau.showTableau();
                     }
+                } catch (PlayerMoveException e) {
+                    System.out.println(e.getMessage());
                 }
             }
         }

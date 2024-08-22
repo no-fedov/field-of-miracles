@@ -1,9 +1,12 @@
 package org.javaacademy.wonder_field.cylinder;
 
+import java.util.Random;
+
 public class Cylinder {
     private static Section position;
     private static Cylinder CYLINDER;
     private final Section[] values = Section.values();
+    private final Random random = new Random();
 
     private Cylinder() {
     }
@@ -20,7 +23,7 @@ public class Cylinder {
     }
 
     public Section spin() {
-        int position = (int) (values.length * Math.random());
+        int position = random.nextInt(values.length + 1);
         Cylinder.position = values[position];
         return Cylinder.position;
     }

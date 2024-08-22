@@ -40,7 +40,11 @@ public class Player {
         return rating;
     }
 
-    public PlayerAnswer move(Scanner scanner) {
+    public PlayerAnswer move(Scanner scanner, Cylinder cylinder) throws PlayerMoveException {
+        if (!this.spinCylinder(cylinder)) {
+            throw new PlayerMoveException();
+        }
+
         System.out.println("Ход игрока " + this.name + ", " + this.city);
         System.out.println("Если хотите букву нажмите 'б' и enter,"
                 + " если хотите слово нажмите 'c' и enter");
@@ -48,7 +52,6 @@ public class Player {
 
         while (true) {
             choice = scanner.nextLine();
-
             if (choice.equals(LETTER) || choice.equals(WORD)) {
                 break;
             } else {
@@ -60,20 +63,6 @@ public class Player {
             return new PlayerAnswer(this.sayLatter(scanner).toUpperCase(), AnswerType.LETTER);
         }
         return new PlayerAnswer(this.sayWord(scanner).toUpperCase(), AnswerType.WORD);
-    }
-
-    public boolean spinCylinder(Cylinder cylinder) {
-        Section section = cylinder.spin();
-        switch (section) {
-            case X_2:
-                this.rating *= 2;
-                return true;
-            case SKIP:
-                return false;
-            default:
-                this.rating += section.getValue();
-        }
-        return true;
     }
 
     private String sayLatter(Scanner scanner) {
@@ -103,5 +92,19 @@ public class Player {
         String word = scanner.nextLine().toUpperCase();
         System.out.println("Игрок " + name + ": слово - " + word);
         return word;
+    }
+
+    private boolean spinCylinder(Cylinder cylinder) {
+        Section section = cylinder.spin();
+        switch (section) {
+            case X_2:
+                this.rating *= 2;
+                return true;
+            case SKIP:
+                return false;
+            default:
+                this.rating += section.getValue();
+        }
+        return true;
     }
 }

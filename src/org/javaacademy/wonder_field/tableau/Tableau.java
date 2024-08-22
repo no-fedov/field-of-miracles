@@ -26,7 +26,7 @@ public class Tableau {
         System.out.println(tableauForShow);
     }
 
-    public boolean openLetter(char letter) {
+    public boolean openLetter(char letter) throws LetterException {
         checkAttributes();
         boolean flag = false;
 

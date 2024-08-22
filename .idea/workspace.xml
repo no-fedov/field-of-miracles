@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="625d23f6-328d-4bc2-a525-842886d482e2" name="Changes" comment="feature: add box with money">
+    <list default="true" id="625d23f6-328d-4bc2-a525-842886d482e2" name="Changes" comment="feature: add Prize">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Box.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/javaacademy/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/player/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Yakubovich.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Yakubovich.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/поле чудес v1.1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/поле чудес v1.1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/cylinder/Cylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/cylinder/Cylinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/tableau/LetterException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/tableau/LetterException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/tableau/Tableau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/tableau/Tableau.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,18 +60,24 @@
     &quot;Application.Singleton.executor&quot;: &quot;Run&quot;,
     &quot;Application.Tableau.executor&quot;: &quot;Run&quot;,
     &quot;Application.Yakubovich.executor&quot;: &quot;Run&quot;,
+    &quot;Java Scratch.Scratch.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/no_fedov/Desktop/ablazzing/java_core_4&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/no_fedov/Desktop/ablazzing/field-of-miracles&quot;,
     &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JAVA&quot;
+    ]
   }
 }</component>
-  <component name="RunManager" selected="Application.Runner">
+  <component name="RunManager" selected="Java Scratch.Scratch">
     <configuration name="Box" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.javaacademy.wonder_field.Box" />
       <module name="field-of-miracles" />
@@ -116,26 +124,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Singleton" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.javaacademy.wonder_field.Singleton" />
-      <module name="field-of-miracles" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.javaacademy.wonder_field.cylinder.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration name="Scratch" type="Java Scratch" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Scratch" />
+      <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_3.java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Java Scratch.Scratch" />
         <item itemvalue="Application.Runner" />
         <item itemvalue="Application.Box" />
         <item itemvalue="Application.Section" />
         <item itemvalue="Application.DayOfWeek" />
-        <item itemvalue="Application.Singleton" />
       </list>
     </recent_temporary>
   </component>
@@ -276,7 +278,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722471746761</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="feature: add Prize">
+      <option name="closed" value="true" />
+      <created>1722515548318</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1722515548318</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -310,7 +320,8 @@
     <MESSAGE value="feature: add logic spinCylinder for Player" />
     <MESSAGE value="feature: complete 6 stage" />
     <MESSAGE value="feature: add box with money" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature: add box with money" />
+    <MESSAGE value="feature: add Prize" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature: add Prize" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
