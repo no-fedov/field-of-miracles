@@ -13,6 +13,9 @@ public final class Yakubovich {
     private static Yakubovich YAKUBOVICH;
     private static final String LEFT = "л";
     private static final String RIGHT = "п";
+    private static final String YES = "д";
+    private static final String NO = "н";
+
 
     private Yakubovich() {
     }
@@ -89,7 +92,17 @@ public final class Yakubovich {
     }
 
     public boolean suggestSuperGame(Scanner scanner) {
-        return false;
+        System.out.println("Будешь играть в супер игру?");
+        System.out.println("введите д или н");
+        String choice = scanner.next();
+        while (true) {
+            if (choice.equals(YES) || choice.equals(NO)) {
+                break;
+            } else {
+                System.out.println("Некорректное значение, введите 'д' или 'н'");
+            }
+        }
+        return choice.equals(YES);
     }
 
     public void declareSection() {

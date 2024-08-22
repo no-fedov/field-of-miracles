@@ -23,7 +23,7 @@ public class Cylinder {
     }
 
     public Section spin() {
-        int position = random.nextInt(values.length + 1);
+        int position = random.nextInt(values.length);
         Cylinder.position = values[position];
         return Cylinder.position;
     }

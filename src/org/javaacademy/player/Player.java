@@ -1,8 +1,10 @@
 package org.javaacademy.player;
 
-import org.javaacademy.wonder_field.tableau.Alphabet;
 import org.javaacademy.wonder_field.cylinder.Cylinder;
 import org.javaacademy.wonder_field.cylinder.Section;
+import org.javaacademy.wonder_field.supergame.Prize;
+import org.javaacademy.wonder_field.supergame.SuperPrize;
+import org.javaacademy.wonder_field.tableau.Alphabet;
 
 import java.util.Scanner;
 
@@ -14,6 +16,9 @@ public class Player {
     private final String city;
     private int rating;
     private int money;
+    private final Prize[] prizes = new Prize[Prize.values().length];
+    private int prizeCounter;
+    private SuperPrize superPrize;
 
     public Player(String name, String city) {
         this.name = name;
@@ -22,6 +27,14 @@ public class Player {
 
     public void setMoney(int money) {
         this.money = money;
+    }
+
+    public SuperPrize getSuperPrize() {
+        return superPrize;
+    }
+
+    public void setSuperPrize(SuperPrize superPrize) {
+        this.superPrize = superPrize;
     }
 
     public int getMoney() {
@@ -38,6 +51,26 @@ public class Player {
 
     public int getRating() {
         return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public void reduceRating(int prizePrice) {
+        this.rating -= prizePrice;
+    }
+
+    public Prize[] getPrizes() {
+        return prizes;
+    }
+
+    public void choosePrize(Prize prize) {
+        if (prizeCounter == Prize.values().length) {
+            throw new RuntimeException("Больше призов не забрать");
+        }
+        prizes[prizeCounter] = prize;
+        prizeCounter++;
     }
 
     public PlayerAnswer move(Scanner scanner, Cylinder cylinder) throws PlayerMoveException {

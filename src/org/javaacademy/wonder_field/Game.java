@@ -5,6 +5,8 @@ import org.javaacademy.player.Player;
 import org.javaacademy.player.PlayerAnswer;
 import org.javaacademy.player.PlayerMoveException;
 import org.javaacademy.wonder_field.cylinder.Cylinder;
+import org.javaacademy.wonder_field.supergame.Prize;
+import org.javaacademy.wonder_field.supergame.SuperPrize;
 import org.javaacademy.wonder_field.tableau.LetterException;
 import org.javaacademy.wonder_field.tableau.Tableau;
 
@@ -27,6 +29,8 @@ public class Game {
     private final Question[] questions = new Question[ROUNDS];
     private final Player[] winners = new Player[GROUP_ROUNDS];
     private Question superQuestion;
+    private Player superWinner;
+    private Prize[] prizes = Prize.values();
 
     private void init() throws InterruptedException {
         System.out.println("Запуск игры \"Поле Чудес\"");
@@ -40,6 +44,12 @@ public class Game {
 
             this.questions[i - 1] = new Question(questions, answer);
         }
+
+        System.out.println("Введите супер вопрос:");
+        String questions = SCANNER.nextLine();
+        System.out.println("Введите ответ на супер вопрос:");
+        String answer = SCANNER.nextLine().toUpperCase();
+        this.superQuestion = new Question(questions, answer);
 
         System.out.println("Иницализация закончена, игра начнется через 5 секунд");
         Thread.sleep(SLEEP_TIME);
@@ -76,6 +86,7 @@ public class Game {
 
         while (!isWin()) {
             PlayerAnswer playerAnswer = player.move(SCANNER, cylinder);
+            yakubovich.declareSection();
             boolean isRight = false;
 
             try {
@@ -120,7 +131,7 @@ public class Game {
                         this.tableau.showTableau();
                     }
                 } catch (PlayerMoveException e) {
-                    System.out.println(e.getMessage());
+                    yakubovich.declareSection();
                 }
             }
         }
@@ -147,15 +158,85 @@ public class Game {
                     playerMakeMove(player, question);
                     if (isWin()) {
                         yakubovich.announceWinner(player, true);
+                        superWinner = player;
                         return;
                     } else {
                         this.tableau.showTableau();
                     }
                 } catch (PlayerMoveException e) {
-                    System.out.println(e.getMessage());
+                    yakubovich.declareSection();
                 }
             }
         }
+    }
+
+    private void playSuperGame() {
+        superWinnerChoosePrizes();
+        if (yakubovich.suggestSuperGame(SCANNER)) {
+            winSuperPrize();
+//            играем
+        }
+        printInfoSupperWinner();
+    }
+
+    private void superWinnerChoosePrizes() {
+        printPrizeList();
+        choosePrize();
+    }
+
+    private void winSuperPrize() {
+        Random random = new Random();
+        int numberSuperPrize = random.nextInt(SuperPrize.values().length);
+        superWinner.setSuperPrize(SuperPrize.values()[numberSuperPrize]);
+    }
+
+    private void printPrizeList() {
+        System.out.println("Список призов!!!");
+        for (Prize prize : Prize.values()) {
+            System.out.printf("№%s %s цена: %s\n", prize.ordinal() + 1, prize.getDescription(), prize.getPrice());
+        }
+    }
+
+    private void choosePrize() {
+        while (findMinimalPriceForPrize() <= superWinner.getRating()) {
+            System.out.println("Выберите позицию");
+            int number = SCANNER.nextInt() - 1;
+
+            Prize prize = prizes[number];
+
+            if (superWinner.getRating() - prize.getPrice() >= 0) {
+                superWinner.reduceRating(prize.getPrice());
+                superWinner.choosePrize(prize);
+                System.out.printf("у вас осталось %s баллов\n", superWinner.getRating());
+            } else {
+                System.out.println("Не хватает баллов");
+            }
+        }
+        System.out.println("У вас ни на что не хватает баллов баллов");
+    }
+
+    private int findMinimalPriceForPrize() {
+        int minPrice = prizes[0].getPrice();
+        for (Prize prize : prizes) {
+            if (prize.getPrice() < minPrice) {
+                minPrice = prize.getPrice();
+            }
+        }
+        return minPrice;
+    }
+
+    private void printInfoSupperWinner() {
+        System.out.println("Победитель выиграл :");
+        System.out.println("Призы: ");
+        for (Prize prize : superWinner.getPrizes()) {
+            if (prize != null) {
+                System.out.printf("%s\n", prize.getDescription());
+            }
+        }
+        if (superWinner.getSuperPrize() != null) {
+            System.out.printf("Супер приз: %s\n", superWinner.getSuperPrize().getDescription());
+        }
+        System.out.printf("Деньги: %s\n", superWinner.getMoney());
     }
 
     public void run() throws InterruptedException {
@@ -163,6 +244,7 @@ public class Game {
         yakubovich.startShow();
         playGroupRounds();
         playFinalRound();
+        playSuperGame();
         SCANNER.close();
         yakubovich.endShow();
     }

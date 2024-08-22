@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="625d23f6-328d-4bc2-a525-842886d482e2" name="Changes" comment="feature: add Prize">
+    <list default="true" id="625d23f6-328d-4bc2-a525-842886d482e2" name="Changes" comment="after the review">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/javaacademy/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/player/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Prize.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/supergame/Prize.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Yakubovich.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/Yakubovich.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/cylinder/Cylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/cylinder/Cylinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/tableau/LetterException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/tableau/LetterException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/tableau/Tableau.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/javaacademy/wonder_field/tableau/Tableau.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/поле чудес v1.1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/поле чудес v1.1.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +22,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -77,13 +78,13 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="Java Scratch.Scratch">
+  <component name="RunManager" selected="Application.Runner">
     <configuration name="Box" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.javaacademy.wonder_field.Box" />
       <module name="field-of-miracles" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.javaacademy.wonder_field.*" />
+          <option name="PATTERN" value="org.javaacademy.wonder_field.supergame.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -133,8 +134,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Java Scratch.Scratch" />
         <item itemvalue="Application.Runner" />
+        <item itemvalue="Java Scratch.Scratch" />
         <item itemvalue="Application.Box" />
         <item itemvalue="Application.Section" />
         <item itemvalue="Application.DayOfWeek" />
@@ -286,7 +287,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722515548318</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="after the review">
+      <option name="closed" value="true" />
+      <created>1724341893354</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1724341893355</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -321,7 +330,8 @@
     <MESSAGE value="feature: complete 6 stage" />
     <MESSAGE value="feature: add box with money" />
     <MESSAGE value="feature: add Prize" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature: add Prize" />
+    <MESSAGE value="after the review" />
+    <option name="LAST_COMMIT_MESSAGE" value="after the review" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

@@ -1,4 +1,4 @@
-package org.javaacademy.wonder_field;
+package org.javaacademy.wonder_field.supergame;
 
 public enum Prize {
     LAPTOP("Ноутбук", 4000),
